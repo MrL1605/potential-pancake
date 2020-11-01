@@ -1,0 +1,15 @@
+{
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "assets/castle-inverted-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ],
+  "name": "Learning PWA - Easy way",
+  "short_name": "Learn PWA",
+  "start_url": "/potential-pancake/step-1/index.html",
+  "background_color": "#3e3636",
+  "theme_color": "3e3636"
+}

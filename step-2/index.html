@@ -14,6 +14,12 @@
 
     <!-- Custom styles-->
     <link href="../assets/common-styles.css" rel="stylesheet" type="text/css">
+
+    <script>
+        if (navigator["serviceWorker"])
+            navigator.serviceWorker.register('./sw.js');
+    </script>
+
 </head>
 <body>
 
@@ -32,27 +38,30 @@
         <div class="ten wide column">
             <div class="ui stacked very padded raised inverted segment">
                 <div class="ui huge inverted header">
-                    Step - 1: Add to Home button
+                    Step - 2: Add service worker
                 </div>
                 <ul>
                     <li>
-                        First create a manifest file and add all attributes.
+                        Create sw.js
+                        <pre>self.addEventListener("install", (e) => {
+    e.waitUntil(
+        caches.open(CACHE_KEY).then((cache) => {
+            return cache.addAll(["./index.html"])
+        })
+    );
+});</pre>
                     </li>
                     <li>
-                        Add Icons
+                        Add script to register sw.js
+                        <pre>if (navigator["serviceWorker"])
+    navigator.serviceWorker.register('./sw.js');</pre>
                     </li>
                     <li>
-                        Create the page and host on HTTPs.
-                    </li>
-                    <li>
-                        You should see the "Add to home" button on mobile browsers.
+                        List all files to be caches in sw.js
                     </li>
                 </ul>
                 <div class="ui disabled header">
-                    These steps are essential for PWA apps.
-                </div>
-                <div class="ui tiny header">
-                    Head over to <a href="../step-2">Step - 2</a>
+                    These steps are essential for PWA apps
                 </div>
             </div>
         </div>

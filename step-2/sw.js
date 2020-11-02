@@ -4,7 +4,7 @@
  */
 
 const CACHE_KEY = "randomKash";
-const staticFiles = ["/potential-pancake/step-2/index.html",
+const staticFiles = ["/potential-pancake/step-2/", "/potential-pancake/step-2/index.html",
     "https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js",
     "https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css",
     "https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js",

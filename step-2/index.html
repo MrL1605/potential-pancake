@@ -33,12 +33,12 @@
 </div>
 
 
-<div class="ui inverted raised container" style="margin-top: 200px">
+<div class="ui inverted raised container" style="padding-top: 80px">
     <div class="ui centered grid">
         <div class="ten wide column">
             <div class="ui stacked very padded raised inverted segment">
                 <div class="ui huge inverted header">
-                    Step - 2: Add service worker
+                    Step 2: Add service worker
                 </div>
                 <ul>
                     <li>
@@ -46,7 +46,7 @@
                         <pre>self.addEventListener("install", (e) => {
     e.waitUntil(
         caches.open(CACHE_KEY).then((cache) => {
-            return cache.addAll(["./index.html"])
+            return cache.addAll(["./index.html", ...]);
         })
     );
 });</pre>
@@ -60,9 +60,35 @@
                         List all files to be caches in sw.js
                     </li>
                 </ul>
-                <div class="ui disabled header">
-                    To test if service worker is working, turn off internet and reload the page
+                <div class="ui huge inverted header">
+                    To test if service worker is working, follow below steps:
                 </div>
+                <ol class="ui inverted relaxed divided list">
+                    <li class="item">
+                        Make sure this is your first time loading this webpage.
+                    </li>
+                    <li class="item">
+                        Turn off the internet, and reload the page
+                    </li>
+                    <li class="item">
+                        <div>Notice that everything is rendered aside from the logo on top left.</div>
+                        <div>This tells us that service worker was written in a way where logo was not be cached before
+                            installation.
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div>Now go online, and refresh the page.</div>
+                        <div>We are online and we can see the logo is visible on the top left again.</div>
+                    </li>
+                    <li class="item">
+                        <div>Now go offline, and refresh the page.</div>
+                        <div>We are back offline and we can see the logo remains visible.</div>
+                        <div>This time service worker was installed and it trapped all the requests and cached their
+                            response (including logo)
+                        </div>
+                        <div>Refresh the page any number of times being offline, now the logo never disappears</div>
+                    </li>
+                </ol>
             </div>
         </div>
     </div>

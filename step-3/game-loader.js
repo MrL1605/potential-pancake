@@ -41,10 +41,10 @@ var gameLoader = (function () {
                                     <a class="ui basic red inverted left pointing label">1,048</a>
                                 </div>
                             </div>
-                            <div class="content">
+                            <div class="content" id="${eachGame["game_id"]}">
                                 <div class="header">${eachGame["game_name"]}</div>
                                 <div class="description">Check the 
-                                    <a href="${eachGame["game_link"]}" target="_blank">Github repo</a>
+                                    <a href="${eachGame["game_url"]}" target="_blank">Github repo</a>
                                 </div>
                             </div>
                         </div>`;

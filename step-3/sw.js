@@ -4,14 +4,14 @@
  */
 
 const CACHE_KEY = "randomKash";
-const staticFiles = ["/potential-pancake/step-2/", "/potential-pancake/step-2/index.html",
+const staticFiles = ["/potential-pancake/step-3/", "/potential-pancake/step-3/index.html",
     "/potential-pancake/step-3/game-loader.js",
     "/potential-pancake/step-3/queries.js",
     "/potential-pancake/assets/castle-inverted-1024.png",
+    "/potential-pancake/assets/common-styles.css",
     "https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js",
     "https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css",
-    "https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js",
-    "https://mrl1605.github.io/potential-pancake/assets/common-styles.css"]
+    "https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"]
 
 self.addEventListener("install", (e) => {
     e.waitUntil(

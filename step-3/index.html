@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Learning PWA Step - 1</title>
+
+    <!-- Manifest file-->
+    <link href="manifest.json" rel="manifest">
+
+    <!-- Fomantic Assets -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.7/dist/semantic.min.js"></script>
+
+    <!-- Custom styles-->
+    <link href="../assets/common-styles.css" rel="stylesheet" type="text/css">
+
+    <script src="queries.js"></script>
+    <script src="game-loader.js"></script>
+    <script>
+        if (navigator["serviceWorker"])
+            navigator.serviceWorker.register('./sw.js');
+    </script>
+
+</head>
+<body onload="gameLoader.init()">
+
+<div class="ui borderless inverted top fixed menu">
+    <div class="item">
+        <img alt="Learning PWA Icon" src="../assets/castle-inverted-1024.png">
+    </div>
+    <div class="red header item">
+        Learning PWA
+    </div>
+</div>
+
+<div class="ui inverted raised container" style="margin-top: 200px">
+    <div class="ui centered grid">
+
+        <div class="ten wide column" id="new-user-block" style="display: none">
+            <div class="ui stacked very padded raised inverted segment">
+                <div class="ui huge inverted header">
+                    You look new around here
+                </div>
+                <div class="ui form">
+                    <div class="field">
+                        <div class="ui input inverted transparent focus">
+                            <input autocomplete="false" id="users-name-input" name="users-name"
+                                   placeholder="Enter your name here" title="Enter your name here"
+                                   type="text">
+                        </div>
+
+                    </div>
+                    <div class="field">
+                        <button class="ui inverted positive button" id="save-username-btn">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ten wide column" id="game-block" style="display: none">
+            <div class="ui stacked very padded raised inverted segment">
+                <div class="ui huge inverted header">
+                    Step - 3: Save state in <code>localStorage</code>
+                </div>
+                <ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

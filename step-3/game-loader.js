@@ -11,6 +11,13 @@ var gameLoader = (function () {
     const getById = (_id) => {
         return document.getElementById(_id);
     }
+    const updateSWButton = () => {
+        if (!window.cacheDate)
+            return;
+        getById("sw-update-btn").classList.remove("secondary");
+        getById("sw-update-btn").classList.add("red");
+        getById("sw-update-btn").innerText = "Offline";
+    };
     const onSWUpdate = () => {
         const installingWorker = serviceReg.installing;
         installingWorker.onstatechange = () => {
@@ -82,6 +89,7 @@ var gameLoader = (function () {
             serviceReg.onupdatefound = onSWUpdate;
         },
         render: () => {
+            updateSWButton();
             if (showNewUser) {
                 getById("new-user-block").setAttribute("style", "display: block");
                 getById("game-block").setAttribute("style", "display: none");

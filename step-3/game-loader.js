@@ -60,6 +60,7 @@ var gameLoader = (function () {
         },
         registerListeners: () => {
             getById("save-username-btn").onclick = newUserRegistered;
+            getById("sw-update-btn").onclick = () => serviceReg && serviceReg.update();
         },
         render: () => {
             if (showNewUser) {

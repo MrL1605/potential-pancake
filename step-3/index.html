@@ -18,13 +18,12 @@
     <script src="queries.js"></script>
     <script src="game-loader.js"></script>
     <script>
+        let serviceReg = null;
         if (navigator["serviceWorker"])
             navigator.serviceWorker.register('./sw.js')
-                .then((e) => {
-                    console.log("After register", e);
-                }).catch((e) => {
-                console.log("oops no register", e)
-            });
+                .then((registration) => {
+                    serviceReg = registration;
+                });
         window.cacheDate = false;
     </script>
 
@@ -37,6 +36,9 @@
     </div>
     <div class="red header item">
         Learning PWA
+    </div>
+    <div class="ui secondary button" id="sw-update-btn">
+        Check for updates
     </div>
 </div>
 

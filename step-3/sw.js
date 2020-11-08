@@ -22,12 +22,20 @@ self.addEventListener("install", (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
+    const requestUrl = new URL(e.request.url);
     e.respondWith(
-        caches.match(e.request).then((r) => {
-            return r || fetch(e.request).then((response) => {
+        caches.match(e.request).then((resp) => {
+            return resp || fetch(e.request).then((response) => {
                 return caches.open(CACHE_KEY).then((cache) => {
-                    console.log('[Service Worker] Caching new resource: ' + e.request.url);
-                    cache.put(e.request, response.clone());
+                    console.log('[Service Worker] Caching new resource: ' + requestUrl);
+                    if (requestUrl.pathname === "/")
+                        response.clone().text().then(function (html) {
+                            html = html.replace('window.cacheDate=false;', 'window.cacheDate="' + Date() + '";');
+                            let modifiedResponse = new Response(new Blob([html]), {headers: response.headers});
+                            cache.put(e.request, modifiedResponse);
+                        });
+                    else
+                        cache.put(e.request, response.clone());
                     return response;
                 });
             });

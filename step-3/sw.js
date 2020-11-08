@@ -27,6 +27,7 @@ self.addEventListener('fetch', (e) => {
     // Skip GraphQL API
     if (requestUrl.hostname === "sharing-magpie-86.hasura.app")
         return;
+    console.log("update test without click")
 
     e.respondWith(
         caches.match(e.request).then((resp) => {

@@ -27,11 +27,10 @@ self.addEventListener('fetch', (e) => {
     // Skip GraphQL API
     if (requestUrl.hostname === "sharing-magpie-86.hasura.app")
         return;
-    console.log("update test without click")
 
     e.respondWith(
         caches.match(e.request).then((resp) => {
-            return resp || fetch(e.request).then((response) => {
+            let networkFetch = fetch(e.request).then((response) => {
                 return caches.open(CACHE_KEY).then((cache) => {
                     console.log('[Service Worker] Caching new resource: ' + requestUrl);
                     if (requestUrl.pathname === "/potential-pancake/step-3/")
@@ -45,6 +44,7 @@ self.addEventListener('fetch', (e) => {
                     return response;
                 });
             });
+            return resp || networkFetch;
         })
     );
 });

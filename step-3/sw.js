@@ -23,6 +23,10 @@ self.addEventListener("install", (e) => {
 
 self.addEventListener('fetch', (e) => {
     const requestUrl = new URL(e.request.url);
+
+    // Skip GraphQL API
+    if (requestUrl.hostname === "sharing-magpie-86.hasura.app")
+        return;
     e.respondWith(
         caches.match(e.request).then((resp) => {
             return resp || fetch(e.request).then((response) => {

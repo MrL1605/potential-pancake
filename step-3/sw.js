@@ -28,7 +28,6 @@ self.addEventListener('fetch', (e) => {
     if (requestUrl.hostname === "sharing-magpie-86.hasura.app")
         return;
 
-    console.log("checking for sw update")
     e.respondWith(
         caches.match(e.request).then((resp) => {
             return resp || fetch(e.request).then((response) => {

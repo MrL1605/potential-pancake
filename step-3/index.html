@@ -19,7 +19,12 @@
     <script src="game-loader.js"></script>
     <script>
         if (navigator["serviceWorker"])
-            navigator.serviceWorker.register('./sw.js');
+            navigator.serviceWorker.register('./sw.js')
+                .then((e) => {
+                    console.log("After register", e);
+                }).catch((e) => {
+                console.log("oops no register", e)
+            });
         window.cacheDate = false;
     </script>
 

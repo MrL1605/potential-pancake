@@ -11,6 +11,24 @@ var gameLoader = (function () {
     const getById = (_id) => {
         return document.getElementById(_id);
     }
+    const onSWUpdate = () => {
+        const installingWorker = serviceReg.installing;
+        installingWorker.onstatechange = () => {
+            switch (installingWorker.state) {
+                case 'installed':
+                    if (navigator.serviceWorker.controller) {
+                        getById("sw-update-btn").classList.remove("secondary");
+                        getById("sw-update-btn").classList.add("primary");
+                        resolve(true);
+                    } else {
+                        getById("sw-update-btn").classList.remove("primary");
+                        getById("sw-update-btn").classList.add("secondary");
+                        resolve(false);
+                    }
+                    break;
+            }
+        };
+    };
     const newUserRegistered = () => {
         let name = getById("users-name-input").value;
         if (!name) {
@@ -61,6 +79,7 @@ var gameLoader = (function () {
         registerListeners: () => {
             getById("save-username-btn").onclick = newUserRegistered;
             getById("sw-update-btn").onclick = () => serviceReg && serviceReg.update();
+            serviceReg.onupdatefound = onSWUpdate;
         },
         render: () => {
             if (showNewUser) {

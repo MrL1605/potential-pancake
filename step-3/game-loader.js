@@ -19,11 +19,11 @@ var gameLoader = (function () {
                     if (navigator.serviceWorker.controller) {
                         getById("sw-update-btn").classList.remove("secondary");
                         getById("sw-update-btn").classList.add("primary");
-                        resolve(true);
+                        console.log("Update found. upgraded");
                     } else {
                         getById("sw-update-btn").classList.remove("primary");
                         getById("sw-update-btn").classList.add("secondary");
-                        resolve(false);
+                        console.log("No update found");
                     }
                     break;
             }

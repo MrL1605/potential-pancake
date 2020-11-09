@@ -11,9 +11,7 @@ var gameLoader = (function () {
     const getById = (_id) => {
         return document.getElementById(_id);
     }
-    const updateSWButton = () => {
-        if (!window.cacheDate)
-            return;
+    const markAsOffline = () => {
         getById("sw-update-btn").classList.remove("secondary");
         getById("sw-update-btn").classList.add("red");
         getById("sw-update-btn").innerText = "Offline";
@@ -51,7 +49,10 @@ var gameLoader = (function () {
             .then((res) => {
                 if (res["data"] && res["data"]["games"])
                     getById("complete-game-list").innerHTML = getGameListHTML(res["data"]["games"]);
-            });
+            }).catch((r) => {
+            console.error("Could not fetch list", r);
+            markAsOffline();
+        });
     }
 
     const getGameListHTML = (gameList) => {
@@ -85,11 +86,11 @@ var gameLoader = (function () {
         },
         registerListeners: () => {
             getById("save-username-btn").onclick = newUserRegistered;
-            getById("sw-update-btn").onclick = () => serviceReg && serviceReg.update();
-            serviceReg.onupdatefound = onSWUpdate;
+            getById("sw-update-btn").onclick = () => serviceReg && serviceReg.update() || updateGameList();
+            if (serviceReg)
+                serviceReg.onupdatefound = onSWUpdate;
         },
         render: () => {
-            updateSWButton();
             if (showNewUser) {
                 getById("new-user-block").setAttribute("style", "display: block");
                 getById("game-block").setAttribute("style", "display: none");

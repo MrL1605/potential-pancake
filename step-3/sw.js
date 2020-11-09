@@ -32,14 +32,7 @@ self.addEventListener('fetch', (e) => {
         caches.match(e.request).then((resp) => {
             let networkFetch = fetch(e.request).then((response) => {
                 return caches.open(CACHE_KEY).then((cache) => {
-                    if (requestUrl.pathname === "/potential-pancake/step-3/")
-                        response.clone().text().then(function (html) {
-                            html = html.replace('window.cacheDate = false;', 'window.cacheDate="' + Date() + '";');
-                            let modifiedResponse = new Response(new Blob([html]), {headers: response.headers});
-                            cache.put(e.request, modifiedResponse);
-                        });
-                    else
-                        cache.put(e.request, response.clone());
+                    cache.put(e.request, response.clone());
                     return response;
                 });
             });
